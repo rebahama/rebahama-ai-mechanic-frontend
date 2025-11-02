@@ -5,6 +5,8 @@ import NavBar from './components/NavBar';
 import ReactDOM from "react-dom/client";
 import AboutPage from './webpage/AboutPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './api/axiosDefault';
+import CreateAccount from './webpage/auth/CreateAcount';
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/signup" element={<CreateAccount />} />
         </Routes>
       </div>
     </BrowserRouter>
