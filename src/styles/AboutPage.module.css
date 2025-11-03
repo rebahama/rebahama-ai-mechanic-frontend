@@ -1,0 +1,67 @@
+.aboutSection {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1117 0%, #1b2838 100%);
+    color: #f8fafc;
+    display: flex;
+    align-items: center;
+    padding: 4rem 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.imageWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 183, 3, 0.1);
+    border-radius: 20px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.4s ease;
+}
+
+.imageWrapper:hover {
+    transform: scale(1.05);
+}
+
+.robotImage {
+    width: 85%;
+    max-width: 340px;
+    height: auto;
+    border-radius: 12px;
+}
+
+.title {
+    font-weight: 700;
+    color: #ffb703;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #e2e8f0;
+    margin-bottom: 1rem;
+}
+
+.learnMoreBtn {
+    background-color: #ffb703;
+    color: #0d1117;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.3rem;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.learnMoreBtn:hover {
+    background-color: #ffd166;
+    transform: scale(1.05);
+}
