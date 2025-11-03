@@ -10,7 +10,6 @@ const AboutPage = () => {
     <div className={styles.aboutSection}>
       <Container>
         <Row className="align-items-center text-center text-md-start">
-          {/* Left: Robot GIF */}
           <Col md={6} className="d-flex justify-content-center mb-4 mb-md-0">
             <div className={styles.imageWrapper}>
               <img
@@ -21,7 +20,6 @@ const AboutPage = () => {
             </div>
           </Col>
 
-          {/* Right: About Text */}
           <Col md={6}>
             <h1 className={styles.title}>
               <wa-icon name="robot" class="me-2"></wa-icon> About Mechanic AI
