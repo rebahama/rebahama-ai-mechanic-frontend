@@ -7,6 +7,7 @@ import AboutPage from './webpage/AboutPage';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './api/axiosDefault';
 import CreateAccount from './webpage/auth/CreateAcount';
+import ShowAll from './webpage/ShowAll';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/about" element={<AboutPage />} />
           <Route path="/signup" element={<CreateAccount />} />
+          <Route path="/showall" element={<ShowAll />} />
         </Routes>
       </div>
     </BrowserRouter>

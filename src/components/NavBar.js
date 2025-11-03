@@ -23,6 +23,7 @@ const NavBar = () => {
 
             <Nav.Link as={Link} to="/about">About</Nav.Link>
             <Nav.Link as={Link} to="/signup">Sign up</Nav.Link>
+             <Nav.Link as={Link} to="/showall">Show all</Nav.Link>
 
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item>Action</NavDropdown.Item>
