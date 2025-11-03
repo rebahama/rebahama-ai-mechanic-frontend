@@ -1,0 +1,108 @@
+.background {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f9fc, #eef3f7);
+  padding-bottom: 3rem;
+}
+
+.title {
+  font-weight: 700;
+  color: #1a237e;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  border: none;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+}
+
+.cardTitle {
+  color: #0d47a1;
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.prompt {
+  font-size: 0.9rem;
+  color: #5c6bc0;
+  margin-bottom: 0.5rem;
+}
+
+.cardText {
+  font-size: 1rem;
+  color: #1a1a1a;
+  line-height: 1.6;
+  max-height: 300px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #90caf9 #e3f2fd;
+  padding-right: 5px;
+}
+
+
+.cardText::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cardText::-webkit-scrollbar-thumb {
+  background-color: #90caf9;
+  border-radius: 3px;
+}
+
+
+.cardText strong,
+.cardText b {
+  color: #0d47a1;
+  font-weight: 700;
+  background: rgba(144, 202, 249, 0.2);
+  padding: 1px 4px;
+  border-radius: 4px;
+}
+
+
+.cardText h2,
+.cardText h3,
+.cardText h4 {
+  color: #1565c0;
+  font-weight: 700;
+  margin-top: 0.75rem;
+  margin-bottom: 0.4rem;
+  font-size: 1.1rem;
+}
+
+
+.cardText ul {
+  padding-left: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.cardText li {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+
+.cardText em {
+  color: #1976d2;
+  font-style: normal;
+  font-weight: 600;
+}
+
+
+.footer {
+  background-color: #e3f2fd;
+  font-size: 0.8rem;
+  color: #0d47a1;
+  text-align: right;
+  border-top: none;
+}
