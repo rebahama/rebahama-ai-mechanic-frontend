@@ -9,6 +9,7 @@ import './api/axiosDefault';
 import CreateAccount from './webpage/auth/CreateAcount';
 import ShowAll from './webpage/ShowAll';
 import HomePage from './webpage/HomePage';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/signup" element={<CreateAccount />} />
           <Route path="/showall" element={<ShowAll />} />
         </Routes>
+        <Footer />
       </div>
     </BrowserRouter>
   );
