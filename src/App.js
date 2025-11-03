@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './api/axiosDefault';
 import CreateAccount from './webpage/auth/CreateAcount';
 import ShowAll from './webpage/ShowAll';
+import HomePage from './webpage/HomePage';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <div className={styles.App}>
         <NavBar />
         <Routes>
+          <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/signup" element={<CreateAccount />} />
           <Route path="/showall" element={<ShowAll />} />
