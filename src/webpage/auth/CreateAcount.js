@@ -25,20 +25,27 @@ const CreateAccount = () => {
 
         try {
             await axios.post("api/auth/registration/", signUp);
-            setMessage("Account created")
+            setMessage("✅ Account created successfully!");
+            setError({});
         } catch (err) {
             console.log(err);
-            setError(err.response?.data);
+            setError(err.response?.data || {});
+            setMessage("");
         }
     };
+
     return (
-        <div>
-            <Container className={styles.CenterForm}>
-                <Row md={12}>
-                    <Col md={12}>
+        <div className={styles.CenterForm}>
+            <Container>
+                <Row className="justify-content-center">
+                    <Col md={6}>
+                        <h2 className={styles.FormTitle}>
+                            <wa-icon name="user-plus" class="me-2"></wa-icon>
+                            Create Account
+                        </h2>
                         <Form onSubmit={submitForm}>
                             <Form.Group className="mb-3" controlId="username">
-                                <Form.Label>Username</Form.Label>
+                                <Form.Label className={styles.FormLabel}>Username</Form.Label>
                                 <Form.Control
                                     type="text"
                                     placeholder="Username"
@@ -47,54 +54,44 @@ const CreateAccount = () => {
                                     className={styles.InputLogIn}
                                     onChange={handleChange}
                                 />
+                                {error.username?.map((msg, idx) => (
+                                    <Alert key={idx} className={styles.Alert}>{msg}</Alert>
+                                ))}
                             </Form.Group>
 
-                            {error.username?.map((message, idx) => (
-                                <Alert variant="warning" key={idx}>
-                                    {message}
-                                </Alert>
-                            ))}
-
                             <Form.Group className="mb-3" controlId="password1">
-                                <Form.Label>Password</Form.Label>
+                                <Form.Label className={styles.FormLabel}>Password</Form.Label>
                                 <Form.Control
                                     type="password"
                                     placeholder="Password"
                                     value={password1}
                                     name="password1"
-                                    onChange={handleChange}
                                     className={styles.InputLogIn}
+                                    onChange={handleChange}
                                 />
+                                {error.password1?.map((msg, idx) => (
+                                    <Alert key={idx} className={styles.Alert}>{msg}</Alert>
+                                ))}
                             </Form.Group>
-                            {error.password1?.map((message, idx) => (
-                                <Alert variant="warning" key={idx}>
-                                    {message}
-                                </Alert>
-                            ))}
 
                             <Form.Group className="mb-3" controlId="password2">
-                                <Form.Label>Confirm password</Form.Label>
+                                <Form.Label className={styles.FormLabel}>Confirm Password</Form.Label>
                                 <Form.Control
                                     type="password"
-                                    placeholder="Confirm password"
+                                    placeholder="Confirm Password"
                                     value={password2}
                                     name="password2"
-                                    onChange={handleChange}
                                     className={styles.InputLogIn}
+                                    onChange={handleChange}
                                 />
+                                {error.password2?.map((msg, idx) => (
+                                    <Alert key={idx} className={styles.Alert}>{msg}</Alert>
+                                ))}
                             </Form.Group>
 
-                            {error.password2?.map((message, idx) => (
-                                <Alert variant="warning" key={idx}>
-                                    {message}
-                                </Alert>
-                            ))}
+                            <Button type="submit" className={styles.LoginBtn}>Create Account</Button>
 
-                            <Button type="submit" className={styles.LoginBtn}> Create </Button>
-
-                            <Alert variant="warning">
-                                {message}
-                            </Alert>
+                            {message && <Alert variant="success" className="mt-3">{message}</Alert>}
                         </Form>
                     </Col>
                 </Row>

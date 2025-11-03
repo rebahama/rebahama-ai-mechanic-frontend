@@ -1,0 +1,72 @@
+.CenterForm {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0d1117 0%, #1b2838 100%);
+    padding: 2rem;
+    color: #ffeb3b;
+}
+
+.FormLabel {
+    color: #ffd700;
+}
+
+.InputLogIn {
+    background-color: #1e2a38;
+    border: 1px solid #ffeb3b;
+    color: #ffeb3b;
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.InputLogIn:focus {
+    border-color: #ffd700;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    outline: none;
+    background-color: #1f2d3e;
+}
+
+.InputLogIn::placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
+
+.LoginBtn {
+    background-color: #ffeb3b;
+    color: #101820;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    margin-top: 1rem;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.LoginBtn:hover {
+    background-color: #ffd700;
+    /* brighter yellow on hover */
+    transform: scale(1.05);
+}
+
+.Alert {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 6px;
+    background-color: rgba(255, 215, 0, 0.15);
+    /* soft yellow bg */
+    color: #ffeb3b;
+    /* yellow text */
+    border: 1px solid #ffeb3b;
+}
+
+.FormTitle {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #ffeb3b;
+    /* bright yellow title */
+    margin-bottom: 1.5rem;
+}
