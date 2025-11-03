@@ -62,13 +62,6 @@ const Footer = () => {
               <button
                 type="button"
                 className={styles.iconButton}
-                aria-label="Chat"
-              >
-                <wa-icon name="message-square"></wa-icon>
-              </button>
-              <button
-                type="button"
-                className={styles.iconButton}
                 aria-label="Community"
               >
                 <wa-icon name="users"></wa-icon>

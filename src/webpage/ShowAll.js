@@ -12,6 +12,7 @@ const ShowAll = () => {
       try {
         const { data } = await axiosReq.get("/result/");
         setResults(data.results);
+        console.log(data)
       } catch (err) {
         console.error("Error fetching results:", err);
       } finally {
@@ -35,6 +36,7 @@ const ShowAll = () => {
           <Row xs={1} md={2} lg={3} className="g-4">
             {results.map((item) => (
               <Col key={item.id}>
+                
                 <Card className={`${styles.card} shadow-lg`}>
                   <Card.Body>
                     <Card.Title className={styles.cardTitle}>
@@ -52,8 +54,11 @@ const ShowAll = () => {
                     />
                   </Card.Body>
                   <Card.Footer className={styles.footer}>
+                   Prompt Created by user: {item.owner}
+                   <hr/>
                     {item.created_at}
                   </Card.Footer>
+                  
                 </Card>
               </Col>
             ))}
