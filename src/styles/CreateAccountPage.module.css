@@ -5,49 +5,53 @@
     align-items: center;
     background: linear-gradient(135deg, #0d1117 0%, #1b2838 100%);
     padding: 2rem;
+    color: #ffeb3b;
+}
+
+.FormLabel {
+    color: #ffd700;
 }
 
 .InputLogIn {
     background-color: #1e2a38;
-    border: 1px solid #ffb703;
-    color: #ffd700;
+    border: 1px solid #ffeb3b;
+    color: #ffeb3b;
     border-radius: 8px;
     padding: 0.6rem 0.8rem;
     transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
-.FormColor {
-    color: #ffd700;
-}
-
-
-.InputLogIn::placeholder {
+.form-control:focus {
     color: #ffffff;
-    opacity: 0.8;
 }
 
 .InputLogIn:focus {
-    border-color: #ffd166;
+    border-color: #ffd700;
     color: #fff3cd;
-    box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     outline: none;
     background-color: #1f2d3e;
 }
 
+.InputLogIn::placeholder {
+    color: #ffffff;
+    opacity: 1;
+}
+
 .LoginBtn {
-    background-color: #ffb703;
+    background-color: #ffeb3b;
     color: #101820;
     font-weight: 600;
     border: none;
     border-radius: 8px;
     padding: 0.6rem 1.2rem;
     margin-top: 1rem;
-    width: 100%;
     transition: transform 0.2s ease, background-color 0.3s ease;
 }
 
 .LoginBtn:hover {
-    background-color: #ffd166;
+    background-color: #ffd700;
+    /* brighter yellow on hover */
     transform: scale(1.05);
 }
 
@@ -56,22 +60,18 @@
     font-size: 0.9rem;
     font-weight: 500;
     border-radius: 6px;
-    background-color: rgba(255, 235, 59, 0.15);
-    color: #fff3cd;
+    background-color: rgba(255, 215, 0, 0.15);
+    /* soft yellow bg */
+    color: #ffeb3b;
+    /* yellow text */
     border: 1px solid #ffeb3b;
 }
 
 .FormTitle {
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 700;
-    color: #ffb703;
+    color: #ffeb3b;
+    /* bright yellow title */
     margin-bottom: 1.5rem;
-}
-
-.LoginCard {
-    background-color: #1a2332;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }

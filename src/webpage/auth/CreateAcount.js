@@ -1,5 +1,5 @@
 import axios from "axios";
-import styles from "../../styles/LogInPage.module.css"
+import styles from "../../styles/CreateAccountPage.module.css"
 import React, { useState } from "react";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
 
@@ -24,8 +24,8 @@ const CreateAccount = () => {
         event.preventDefault();
 
         try {
-            await axios.post("api/auth/registration/", signUp);
-            setMessage("✅ Account created successfully!");
+            await axios.post("dj-rest-auth/registration/", signUp);
+            setMessage("Account created successfully!");
             setError({});
         } catch (err) {
             console.log(err);
