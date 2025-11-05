@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { axiosReqq } from "../../api/axiosDefault";
+import axios from "axios";
 import styles from "../../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row, Card, Spinner } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -22,14 +22,18 @@ const LogIn = () => {
     setLoading(true);
 
     try {
-      // 1️⃣ Login: sets JWT cookies automatically (HttpOnly)
-      await axiosReqq.post("/dj-rest-auth/login/", signIn);
+      const { data } = await axios.post(
+        "https://mechanic-ai-backend-30fbbccc99ba.herokuapp.com/api/token/",
+        signIn
+      );
 
-      // 2️⃣ Fetch current user info from the server
-      const { data: user } = await axiosReqq.get("/dj-rest-auth/user/");
-      setCurrentUser(user);
+      localStorage.setItem("access_token", data.access);
+      localStorage.setItem("refresh_token", data.refresh);
 
-      // 3️⃣ Navigate to homepage
+      axios.defaults.headers.common["Authorization"] = `Bearer ${data.access}`;
+
+      setCurrentUser({ username: signIn.username });
+
       navigate("/");
     } catch (err) {
       setError(err.response?.data || { non_field_errors: ["Login failed."] });

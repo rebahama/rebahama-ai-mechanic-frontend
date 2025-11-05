@@ -11,8 +11,7 @@ const ShowAll = () => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get("/result/");
-        setResults(data || []);
-        console.log(data);
+        setResults(data.results || []);
       } catch (err) {
         console.error("Error fetching results:", err);
         setResults([]);

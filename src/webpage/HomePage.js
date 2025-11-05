@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefault";
 import { Link } from "react-router-dom";
-import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
-import Carousel from 'react-bootstrap/Carousel';
-import Spinner from 'react-bootstrap/Spinner';
-import homeWrench from '../assets/Wrench.gif';
-import styles from '../styles/HomePage.module.css';
+import Container from "react-bootstrap/Container";
+import Button from "react-bootstrap/Button";
+import Carousel from "react-bootstrap/Carousel";
+import Spinner from "react-bootstrap/Spinner";
+import homeWrench from "../assets/Wrench.gif";
+import styles from "../styles/HomePage.module.css";
 
 const HomePage = () => {
   const [results, setResults] = useState([]);
@@ -16,7 +16,7 @@ const HomePage = () => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get("/result/");
-        setResults(data || []);
+        setResults(data.results || []);
       } catch (err) {
         console.error("Error fetching results:", err);
         setResults([]);
@@ -24,6 +24,7 @@ const HomePage = () => {
         setLoading(false);
       }
     };
+
     handleMount();
   }, []);
 
@@ -39,7 +40,11 @@ const HomePage = () => {
           </p>
 
           <div className={styles.gifContainer}>
-            <img src={homeWrench} alt="Spinning wrench" className={styles.wrenchGif} />
+            <img
+              src={homeWrench}
+              alt="Spinning wrench"
+              className={styles.wrenchGif}
+            />
           </div>
 
           <div className="mt-4">
@@ -77,6 +82,7 @@ const HomePage = () => {
                           : item.original_prompt
                         : "No prompt available."}
                     </p>
+
                     <h6 className={styles.cardTitle}>Answer:</h6>
                     <p className={styles.cardText}>
                       {item.result
@@ -86,7 +92,11 @@ const HomePage = () => {
                         : "No answer available."}
                     </p>
 
-                    <Button variant="outline-warning" size="sm" className="mt-2">
+                    <Button
+                      variant="outline-warning"
+                      size="sm"
+                      className="mt-2"
+                    >
                       View More
                     </Button>
                   </div>
