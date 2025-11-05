@@ -1,6 +1,6 @@
 .background {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f7f9fc, #eef3f7);
+  background: radial-gradient(circle at top left, #1565c0, #0d47a1);
   padding-bottom: 3rem;
 }
 

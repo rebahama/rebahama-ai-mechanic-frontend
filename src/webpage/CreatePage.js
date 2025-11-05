@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { Form, Button, Container, Row, Col, Alert, Card } from "react-bootstrap";
+import React, { useState } from "react";
+import { Form, Button, Container, Row, Col, Alert, Card, Spinner } from "react-bootstrap";
 import { axiosReq } from "../api/axiosDefault";
 import styles from "../styles/CreatePage.module.css";
 
@@ -12,7 +12,7 @@ function CreatePage() {
   });
   const [error, setError] = useState({});
   const [success, setSuccess] = useState("");
-  const fileInput = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -22,10 +22,11 @@ function CreatePage() {
     e.preventDefault();
     setError({});
     setSuccess("");
+    setLoading(true);
 
     try {
-      const response = await axiosReq.post("/diagnose/", formData);
-      setSuccess("Diagnosis request created successfully!");
+      await axiosReq.post("/diagnose/", formData);
+      setSuccess("✅ Diagnosis request created successfully!");
       setFormData({
         car_make: "",
         car_model: "",
@@ -33,20 +34,21 @@ function CreatePage() {
         problem_description: "",
       });
     } catch (err) {
-      console.error(err.response?.data);
       setError(err.response?.data || { non_field_errors: ["Something went wrong."] });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Container className={styles.CreateContainer}>
+    <Container className={`py-5 ${styles.CreateContainer}`}>
       <Row className="justify-content-center">
-        <Col md={6}>
-          <Card className="shadow-sm p-4 mt-5">
-            <h3 className="text-center mb-4">Create Diagnosis Request</h3>
+        <Col md={7} lg={6}>
+          <Card className={`shadow-lg p-4 ${styles.cardCustom}`}>
+            <h3 className="text-center mb-4 fw-bold">Create Diagnosis Request</h3>
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3">
-                <Form.Label>Car Make</Form.Label>
+                <Form.Label className="fw-semibold">Car Make</Form.Label>
                 <Form.Control
                   name="car_make"
                   value={formData.car_make}
@@ -56,7 +58,7 @@ function CreatePage() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Car Model</Form.Label>
+                <Form.Label className="fw-semibold">Car Model</Form.Label>
                 <Form.Control
                   name="car_model"
                   value={formData.car_model}
@@ -66,7 +68,7 @@ function CreatePage() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Car Year</Form.Label>
+                <Form.Label className="fw-semibold">Car Year</Form.Label>
                 <Form.Control
                   name="car_year"
                   type="number"
@@ -77,7 +79,7 @@ function CreatePage() {
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label>Problem Description</Form.Label>
+                <Form.Label className="fw-semibold">Problem Description</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={4}
@@ -89,14 +91,28 @@ function CreatePage() {
               </Form.Group>
 
               {error.non_field_errors?.map((msg, idx) => (
-                <Alert key={idx} variant="danger">{msg}</Alert>
+                <Alert key={idx} variant="danger" className="py-2">{msg}</Alert>
               ))}
 
-              {success && <Alert variant="success">{success}</Alert>}
+              {success && <Alert variant="success" className="py-2">{success}</Alert>}
 
-              <div className="text-center">
-                <Button type="submit" className="btn-primary w-100">
-                  Submit Request
+              <div className="d-grid mt-3">
+                <Button type="submit" variant="primary" size="lg" disabled={loading}>
+                  {loading ? (
+                    <>
+                      <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                        className="me-2"
+                      />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit Request"
+                  )}
                 </Button>
               </div>
             </Form>

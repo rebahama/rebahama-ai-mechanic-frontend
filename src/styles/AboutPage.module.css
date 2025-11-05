@@ -1,6 +1,6 @@
 .aboutSection {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0d1117 0%, #1b2838 100%);
+    background: radial-gradient(circle at top left, #1565c0, #0d47a1);
     color: #f8fafc;
     display: flex;
     align-items: center;

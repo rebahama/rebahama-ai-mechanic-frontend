@@ -12,6 +12,7 @@ const ShowAll = () => {
       try {
         const { data } = await axiosReq.get("/result/");
         setResults(data.results || []);
+        console.log(data.results)
       } catch (err) {
         console.error("Error fetching results:", err);
         setResults([]);
