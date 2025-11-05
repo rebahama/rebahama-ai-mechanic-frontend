@@ -11,10 +11,11 @@ const ShowAll = () => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get("/result/");
-        setResults(data.results);
-        console.log(data)
+        setResults(data || []);
+        console.log(data);
       } catch (err) {
         console.error("Error fetching results:", err);
+        setResults([]);
       } finally {
         setLoading(false);
       }
@@ -36,29 +37,27 @@ const ShowAll = () => {
           <Row xs={1} md={2} lg={3} className="g-4">
             {results.map((item) => (
               <Col key={item.id}>
-                
                 <Card className={`${styles.card} shadow-lg`}>
                   <Card.Body>
                     <Card.Title className={styles.cardTitle}>
-                      {item.request_info}
+                      {item.request_info || "No Request Info"}
                     </Card.Title>
                     <Card.Subtitle className={styles.prompt}>
-                      {item.original_prompt}
+                      {item.original_prompt || "No Prompt"}
                     </Card.Subtitle>
                     <hr />
                     <div
                       className={styles.cardText}
                       dangerouslySetInnerHTML={{
-                        __html: item.result.replace(/\n/g, "<br/>"),
+                        __html: (item.result || "").replace(/\n/g, "<br/>"),
                       }}
                     />
                   </Card.Body>
                   <Card.Footer className={styles.footer}>
-                   Prompt Created by user: {item.owner}
-                   <hr/>
-                    {item.created_at}
+                    Prompt Created by user: {item.owner || "Unknown"}
+                    <hr />
+                    {item.created_at || "Unknown date"}
                   </Card.Footer>
-                  
                 </Card>
               </Col>
             ))}

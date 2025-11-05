@@ -8,3 +8,9 @@ axios.defaults.withCredentials = true;
 
 export const axiosReq = axios.create();
 export const axiosRes = axios.create();
+
+
+export const axiosReqq = axios.create({
+  baseURL: "https://mechanic-ai-backend-30fbbccc99ba.herokuapp.com/",
+  withCredentials: true,
+});

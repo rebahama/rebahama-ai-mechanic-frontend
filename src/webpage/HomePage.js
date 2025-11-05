@@ -16,9 +16,10 @@ const HomePage = () => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get("/result/");
-        setResults(data.results);
+        setResults(data || []);
       } catch (err) {
         console.error("Error fetching results:", err);
+        setResults([]);
       } finally {
         setLoading(false);
       }
@@ -49,7 +50,7 @@ const HomePage = () => {
               size="lg"
               className={styles.btnStart}
             >
-              <wa-icon name="robot" class="me-2"></wa-icon>
+              <wa-icon name="robot" className="me-2"></wa-icon>
               Get Started
             </Button>
           </div>
@@ -61,36 +62,40 @@ const HomePage = () => {
               <span className="visually-hidden">Loading...</span>
             </Spinner>
           </div>
-        ) : (
-          results.length > 0 && (
-            <div className="mt-5">
-              <h2 className="mb-3 text-warning">Example Prompts</h2>
-              <Carousel interval={5000} pause="hover">
-                {results.slice(0, 4).map((item) => (
-                  <Carousel.Item key={item.id}>
-                    <div className={styles.carouselCard}>
-                      <h5 className={styles.cardTitle}>Prompt:</h5>
-                      <p className={styles.cardText}>
-                        {item.original_prompt.length > 100
+        ) : results.length > 0 ? (
+          <div className="mt-5">
+            <h2 className="mb-3 text-warning">Example Prompts</h2>
+            <Carousel interval={5000} pause="hover">
+              {results.slice(0, 4).map((item) => (
+                <Carousel.Item key={item.id}>
+                  <div className={styles.carouselCard}>
+                    <h5 className={styles.cardTitle}>Prompt:</h5>
+                    <p className={styles.cardText}>
+                      {item.original_prompt
+                        ? item.original_prompt.length > 100
                           ? item.original_prompt.slice(0, 100) + "..."
-                          : item.original_prompt}
-                      </p>
-                      <h6 className={styles.cardTitle}>Answer:</h6>
-                      <p className={styles.cardText}>
-                        {item.result.length > 120
+                          : item.original_prompt
+                        : "No prompt available."}
+                    </p>
+                    <h6 className={styles.cardTitle}>Answer:</h6>
+                    <p className={styles.cardText}>
+                      {item.result
+                        ? item.result.length > 120
                           ? item.result.slice(0, 120) + "..."
-                          : item.result}
-                      </p>
+                          : item.result
+                        : "No answer available."}
+                    </p>
 
-                      <Button variant="outline-warning" size="sm" className="mt-2">
-                        View More
-                      </Button>
-                    </div>
-                  </Carousel.Item>
-                ))}
-              </Carousel>
-            </div>
-          )
+                    <Button variant="outline-warning" size="sm" className="mt-2">
+                      View More
+                    </Button>
+                  </div>
+                </Carousel.Item>
+              ))}
+            </Carousel>
+          </div>
+        ) : (
+          <p className="text-center text-muted">No results found.</p>
         )}
       </Container>
     </div>

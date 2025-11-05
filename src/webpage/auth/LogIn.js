@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useContext, useState } from "react";
+import { axiosReqq } from "../../api/axiosDefault";
 import styles from "../../styles/LogInPage.module.css";
 import { Alert, Button, Container, Form, Col, Row, Card, Spinner } from "react-bootstrap";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { useNavigate } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const LogIn = () => {
-  const setCurrentUser = useSetCurrentUser();
   const [signIn, setSignIn] = useState({ username: "", password: "" });
   const [error, setError] = useState({});
   const [loading, setLoading] = useState(false);
+  const { setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
   const handleInput = (event) => {
@@ -22,13 +22,14 @@ const LogIn = () => {
     setLoading(true);
 
     try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signIn);
+      // 1️⃣ Login: sets JWT cookies automatically (HttpOnly)
+      await axiosReqq.post("/dj-rest-auth/login/", signIn);
 
-      axios.defaults.headers.common["Authorization"] = `Token ${data.key}`;
+      // 2️⃣ Fetch current user info from the server
+      const { data: user } = await axiosReqq.get("/dj-rest-auth/user/");
+      setCurrentUser(user);
 
-      const { data: userData } = await axios.get("/dj-rest-auth/user/");
-      setCurrentUser(userData);
-
+      // 3️⃣ Navigate to homepage
       navigate("/");
     } catch (err) {
       setError(err.response?.data || { non_field_errors: ["Login failed."] });
@@ -37,7 +38,6 @@ const LogIn = () => {
     }
   };
 
-  
   return (
     <div className={styles.CenterForm}>
       <Container>
@@ -58,6 +58,7 @@ const LogIn = () => {
                       className={styles.InputLogIn}
                     />
                   </Form.Group>
+
                   {error.username?.map((msg, idx) => (
                     <Alert variant="warning" key={idx}>{msg}</Alert>
                   ))}
@@ -73,6 +74,7 @@ const LogIn = () => {
                       className={styles.InputLogIn}
                     />
                   </Form.Group>
+
                   {error.password?.map((msg, idx) => (
                     <Alert variant="warning" key={idx}>{msg}</Alert>
                   ))}
@@ -84,14 +86,7 @@ const LogIn = () => {
                   <Button type="submit" className={styles.LoginBtn} disabled={loading}>
                     {loading ? (
                       <>
-                        <Spinner
-                          as="span"
-                          animation="border"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                          className="me-2"
-                        />
+                        <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
                         Logging in...
                       </>
                     ) : (
