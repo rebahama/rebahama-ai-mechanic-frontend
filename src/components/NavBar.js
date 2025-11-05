@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
-import { Link} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import styles from "../styles/NavBar.module.css";
-import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
-
 
 const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
@@ -17,9 +15,38 @@ const NavBar = () => {
       setCurrentUser(null);
       navigate("/");
     } catch (err) {
-      console.error(err);
+      console.error("Logout error:", err);
     }
   };
+
+  const LoggedIn = (
+    <>
+      <span className="me-3 text-light">
+        Logged in as <strong>{currentUser?.username}</strong>
+      </span>
+      <button onClick={handleLogOut} className={styles.logoutBtn}>
+        Log out
+      </button>
+
+      <Nav.Link as={Link} to="/create" className={styles.navItem}>
+        <wa-icon name="user-plus" className="me-1"></wa-icon>
+        Create page
+      </Nav.Link>
+    </>
+  );
+
+  const LoggedOut = (
+    <>
+      <Nav.Link as={Link} to="/signup" className={styles.navItem}>
+        <wa-icon name="user-plus" className="me-1"></wa-icon>
+        Sign Up
+      </Nav.Link>
+      <Nav.Link as={Link} to="/login" className={styles.navItem}>
+        <wa-icon name="sign-in" className="me-1"></wa-icon>
+        Sign In
+      </Nav.Link>
+    </>
+  );
 
   return (
     <Navbar expand="lg" className={`${styles.NavBar} shadow-sm`} fixed="top">
@@ -46,27 +73,11 @@ const NavBar = () => {
               <wa-icon name="list" className="me-1"></wa-icon>
               Show All
             </Nav.Link>
-
-            {currentUser ? (
-              <>
-                <span className="me-2">Logged in as {currentUser.username}</span>
-                <button onClick={handleLogOut} className={styles.logoutBtn}>
-                  Log out
-                </button>
-              </>
-            ) : (
-              <>
-                <Nav.Link as={Link} to="/signup" className={styles.navItem}>
-                  <wa-icon name="user-plus" className="me-1"></wa-icon>
-                  Sign Up
-                </Nav.Link>
-                <Nav.Link as={Link} to="/login" className={styles.navItem}>
-                  <wa-icon name="sign-in" className="me-1"></wa-icon>
-                  Sign In
-                </Nav.Link>
-              </>
-            )}
           </Nav>
+
+          <div className="d-flex align-items-center">
+            {currentUser ? LoggedIn : LoggedOut}
+          </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>
