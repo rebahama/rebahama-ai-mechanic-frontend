@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
+  const [logout, setLogout] = useState("");
 
   
 
@@ -17,6 +18,8 @@ const NavBar = () => {
     axios.defaults.headers.common["Authorization"] = null;
     setCurrentUser(null);
     navigate("/");
+    setLogout("You have logged out");
+    setTimeout(() => setLogout(""), 3000);
   };
 
   
@@ -48,6 +51,7 @@ const NavBar = () => {
         <wa-icon name="user-plus" className="me-1"></wa-icon>
         Sign Up
       </Nav.Link>
+      {logout}
       <Nav.Link as={Link} to="/login" className={styles.navItem}>
         <wa-icon name="sign-in" className="me-1"></wa-icon>
         Sign In
