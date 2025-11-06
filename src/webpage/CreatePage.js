@@ -25,8 +25,8 @@ function CreatePage() {
     setLoading(true);
 
     try {
-      await axiosReq.post("/diagnose/", formData);
-      setSuccess("✅ Diagnosis request created successfully!");
+      await axiosReq.post("/diagnose/", formData, { requiresAuth: true });
+      setSuccess("Diagnosis request created successfully!");
       setFormData({
         car_make: "",
         car_model: "",
@@ -108,7 +108,7 @@ function CreatePage() {
                         aria-hidden="true"
                         className="me-2"
                       />
-                      Submitting...
+                      Please wait the smart mechanic is thinking...
                     </>
                   ) : (
                     "Submit Request"

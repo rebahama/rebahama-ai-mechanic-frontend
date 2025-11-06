@@ -9,15 +9,13 @@ const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
-  const handleLogOut = async () => {
-    try {
-      await axios.post("/dj-rest-auth/logout/");
-      setCurrentUser(null);
-      navigate("/");
-    } catch (err) {
-      console.error("Logout error:", err);
-    }
-  };
+  const handleLogOut = () => {
+  localStorage.removeItem("access_token");
+  localStorage.removeItem("refresh_token");
+  axios.defaults.headers.common["Authorization"] = null;
+  setCurrentUser(null);
+  navigate("/");
+};
 
   const LoggedIn = (
     <>
