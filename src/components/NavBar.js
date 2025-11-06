@@ -9,13 +9,17 @@ const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
+  
+
   const handleLogOut = () => {
-  localStorage.removeItem("access_token");
-  localStorage.removeItem("refresh_token");
-  axios.defaults.headers.common["Authorization"] = null;
-  setCurrentUser(null);
-  navigate("/");
-};
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    axios.defaults.headers.common["Authorization"] = null;
+    setCurrentUser(null);
+    navigate("/");
+  };
+
+  
 
   const LoggedIn = (
     <>
@@ -25,7 +29,7 @@ const NavBar = () => {
       </Nav.Link>
 
       <Nav.Link as={Link} to="/mypage" className={styles.navItem}>
-        <wa-icon name="user-plus" className="me-1"></wa-icon>
+        <wa-icon name="user" className="me-1"></wa-icon>
         My personal page
       </Nav.Link>
 

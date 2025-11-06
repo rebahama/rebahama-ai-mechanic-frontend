@@ -17,25 +17,25 @@ import DetailPage from './webpage/DetailPage';
 
 
 function App() {
-  
+
   return (
-<CurrentUserProvider>
-    <BrowserRouter>
-      <div className={styles.App}>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/signup" element={<CreateAccount />} />
-          <Route path="/showall" element={<ShowAll />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/create" element={<CreatePage />} />
-          <Route path="/mypage" element={<MyPage />} />
-          <Route path="/detail/:id" element={<DetailPage />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <CurrentUserProvider>
+      <BrowserRouter>
+        <div className={styles.App}>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/signup" element={<CreateAccount />} />
+            <Route path="/showall" element={<ShowAll />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/create" element={<CreatePage />} />
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/detail/:id" element={<DetailPage />} />
+          </Routes>
+          <Footer />
+        </div>
+      </BrowserRouter>
     </CurrentUserProvider>
   );
 }

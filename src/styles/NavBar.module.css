@@ -27,7 +27,6 @@
 
 .navItem {
     color: #f5f9ff !important;
-    /* near-white with high contrast */
     font-size: 1.05rem;
     display: flex;
     align-items: center;
@@ -76,6 +75,26 @@
     --wa-avatar-bg: #2196f3;
     --wa-avatar-color: #fff;
     --wa-avatar-border-radius: 50%;
+}
+
+.logoutBtn {
+    background: #e53935;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 0.6rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.logoutBtn:hover {
+    background: #ef5350;
+    transform: translateY(-2px);
+}
+
+.logoutBtn:active {
+    transform: translateY(1px);
 }
 
 @media (max-width: 768px) {
