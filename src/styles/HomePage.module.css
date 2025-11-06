@@ -71,3 +71,27 @@
     background: linear-gradient(90deg, #42a5f5, #1e88e5);
     transform: translateY(-3px);
 }
+
+.cardText {
+    margin-bottom: 3rem;
+}
+
+.btnViewAll {
+    background: linear-gradient(90deg, #2196f3, #64b5f6);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.7rem;
+    border: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    display: inline-block;
+    margin-top: 1rem;
+    text-decoration: none;
+}
+
+.btnViewAll:hover {
+    background: linear-gradient(90deg, #42a5f5, #1e88e5);
+    transform: translateY(-2px);
+    color: #fff;
+}

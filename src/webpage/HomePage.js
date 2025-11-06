@@ -69,12 +69,12 @@ const HomePage = () => {
           </div>
         ) : results.length > 0 ? (
           <div className="mt-5">
-            <h2 className="mb-3 text-warning">Example Prompts</h2>
+            <h2 className="mb-3 text-warning">Examples</h2>
             <Carousel interval={5000} pause="hover">
               {results.slice(0, 4).map((item) => (
                 <Carousel.Item key={item.id}>
                   <div className={styles.carouselCard}>
-                    <h5 className={styles.cardTitle}>Prompt:</h5>
+                    <h5 className={styles.cardTitle}>Questions to smart mechanic:</h5>
                     <p className={styles.cardText}>
                       {item.original_prompt
                         ? item.original_prompt.length > 100
@@ -91,18 +91,18 @@ const HomePage = () => {
                           : item.result
                         : "No answer available."}
                     </p>
-
-                    <Button
-                      variant="outline-warning"
-                      size="sm"
-                      className="mt-2"
-                    >
-                      View More
-                    </Button>
                   </div>
                 </Carousel.Item>
               ))}
             </Carousel>
+            <Button
+              as={Link}
+              to="/showall"
+              size="md"
+              className={styles.btnViewAll}
+            >
+              View All
+            </Button>
           </div>
         ) : (
           <p className="text-center text-muted">No results found.</p>
