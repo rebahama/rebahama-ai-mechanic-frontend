@@ -12,6 +12,7 @@ import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import CreatePage from './webpage/CreatePage';
 import MyPage from './webpage/MyPage';
 import DetailPage from './webpage/DetailPage';
+import LearnPage from './webpage/LearnPage';
 
 
 
@@ -32,6 +33,7 @@ function App() {
             <Route path="/create" element={<CreatePage />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/detail/:id" element={<DetailPage />} />
+            <Route path="/learn/" element={<LearnPage />} />
           </Routes>
           <Footer />
         </div>

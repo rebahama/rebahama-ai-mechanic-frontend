@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from '../styles/AboutPage.module.css';
 import Robot from '../assets/Robot.gif';
+import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
   return (
@@ -37,10 +38,10 @@ const AboutPage = () => {
             </p>
 
             <div className="mt-4">
-              <button className={styles.learnMoreBtn}>
-                <wa-icon name="info-circle" class="me-2"></wa-icon>
+              <Link to="/learn" className={styles.learnMoreBtn}>
+                <wa-icon name="info-circle" className="me-2"></wa-icon>
                 Learn More
-              </button>
+              </Link>
             </div>
           </Col>
         </Row>
