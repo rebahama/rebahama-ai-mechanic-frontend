@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Form, Button, Container, Row, Col, Alert, Card, Spinner } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { axiosReq } from "../api/axiosDefault";
 import styles from "../styles/CreatePage.module.css";
 
 function CreatePage() {
+  const { currentUser } = useContext(CurrentUserContext);
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     car_make: "",
     car_model: "",
@@ -13,6 +18,12 @@ function CreatePage() {
   const [error, setError] = useState({});
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!currentUser) {
+      navigate("/login");
+    }
+  }, [currentUser, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
