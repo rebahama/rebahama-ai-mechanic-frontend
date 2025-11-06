@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefault";
-import { Container, Row, Col, Card, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styles from "../styles/ShowAllPage.module.css";
 
 const ShowAll = () => {
@@ -12,7 +13,6 @@ const ShowAll = () => {
       try {
         const { data } = await axiosReq.get("/result/");
         setResults(data.results || []);
-        console.log(data.results)
       } catch (err) {
         console.error("Error fetching results:", err);
         setResults([]);
@@ -53,10 +53,21 @@ const ShowAll = () => {
                       }}
                     />
                   </Card.Body>
-                  <Card.Footer className={styles.footer}>
-                    Prompt Created by user: {item.owner || "Unknown"}
-                    <hr />
-                    {item.created_at || "Unknown date"}
+                  <Card.Footer className="d-flex justify-content-between align-items-center">
+                    <div>
+                      Prompt Created by user: {item.owner || "Unknown"}
+                      <hr />
+                      {item.created_at || "Unknown date"}
+                    </div>
+                    <Link to={`/detail/${item.id}`}>
+                      <Button
+                        variant="primary"
+                        style={{ fontWeight: 600 }}
+                        className="px-3 py-1"
+                      >
+                        View More
+                      </Button>
+                    </Link>
                   </Card.Footer>
                 </Card>
               </Col>
