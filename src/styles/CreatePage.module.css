@@ -1,29 +1,43 @@
 .pageWrapper {
-  background: linear-gradient(180deg, #f8f9fa 0%, #e9ecef 100%);
   min-height: 100vh;
+  background: radial-gradient(circle at top left, #1565c0, #0d47a1);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+
   justify-content: center;
+  padding-top: 120px;
+
+  padding-bottom: 3rem;
 }
 
-.card {
+
+.cardCustom {
   background-color: #ffffff;
   border-radius: 1rem;
   border: none;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
 }
 
-.title {
-  font-weight: 700;
-  color: #212529;
-  text-shadow: 0px 0px 2px rgba(255, 193, 7, 0.3);
+.cardCustom:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
 }
+
+
+h3 {
+  color: #0d47a1;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 
 .input,
 .textarea {
-  background-color: #fdfdfd;
+  background-color: #f8f9fa;
   color: #212529;
-  border: 1px solid #ccc;
+  border: 1px solid #ced4da;
   border-radius: 0.5rem;
   padding: 10px;
   transition: all 0.3s ease;
@@ -33,6 +47,19 @@
 .textarea:focus {
   border-color: #ffc107;
   box-shadow: 0 0 6px rgba(255, 193, 7, 0.4);
+}
+
+.textarea::-webkit-scrollbar {
+  width: 6px;
+}
+
+.textarea::-webkit-scrollbar-thumb {
+  background-color: #90caf9;
+  border-radius: 3px;
+}
+
+.textarea::-webkit-scrollbar-track {
+  background-color: #e3f2fd;
 }
 
 .submitBtn {
@@ -50,6 +77,20 @@
   transform: translateY(-2px);
 }
 
+
 .alert {
   margin-top: 10px;
+}
+
+
+@media (max-width: 768px) {
+  .pageWrapper {
+    padding-top: 100px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .cardCustom {
+    padding: 1.5rem;
+  }
 }
