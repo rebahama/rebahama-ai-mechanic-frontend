@@ -107,3 +107,20 @@
   text-align: right;
   border-top: none;
 }
+
+.deleteBtn {
+  background: #e53935;
+  border: none;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.deleteBtn:hover {
+  background: #ef5350;
+  color: white;
+  transform: translateY(-2px);
+  cursor: pointer;
+}

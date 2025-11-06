@@ -19,13 +19,6 @@ const NavBar = () => {
 
   const LoggedIn = (
     <>
-      <span className="me-3 text-light">
-        Logged in as <strong>{currentUser?.username}</strong>
-      </span>
-      <button onClick={handleLogOut} className={styles.logoutBtn}>
-        Log out
-      </button>
-
       <Nav.Link as={Link} to="/create" className={styles.navItem}>
         <wa-icon name="user-plus" className="me-1"></wa-icon>
         Create page
@@ -35,6 +28,13 @@ const NavBar = () => {
         <wa-icon name="user-plus" className="me-1"></wa-icon>
         My personal page
       </Nav.Link>
+
+      <span className="me-3 text-light">
+        Logged in as <strong>{currentUser?.username}</strong>
+      </span>
+      <button onClick={handleLogOut} className={styles.logoutBtn}>
+        Log out
+      </button>
     </>
   );
 

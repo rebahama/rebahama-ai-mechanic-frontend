@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
+import { Container, Row, Col, Card, Spinner, Alert, Button } from "react-bootstrap";
 import styles from "../styles/ShowAllPage.module.css";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { axiosReq } from "../api/axiosDefault";
@@ -35,6 +35,19 @@ const MyPage = () => {
         fetchUserResults();
     }, [currentUser]);
 
+    const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Are you sure you want to delete this prompt?");
+        if (!confirmDelete) return;
+
+        try {
+            await axiosReq.delete(`/result/${id}/`, { requiresAuth: true });
+            setResults((prev) => prev.filter((item) => item.id !== id));
+        } catch (err) {
+            console.error("Error deleting prompt:", err);
+            setError("Failed to delete this prompt.");
+        }
+    };
+
     return (
         <div className={styles.background}>
             <Container className="py-5">
@@ -66,10 +79,18 @@ const MyPage = () => {
                                             }}
                                         />
                                     </Card.Body>
-                                    <Card.Footer className={styles.footer}>
-                                        Prompt Created by you
-                                        <hr />
-                                        {item.created_at || "Unknown date"}
+                                    <Card.Footer className="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            Prompt Created by you
+                                            <hr />
+                                            {item.created_at || "Unknown date"}
+                                        </div>
+                                        <Button
+                                            onClick={() => handleDelete(item.id)}
+                                            className={`${styles.deleteBtn} ms-2`}
+                                        >
+                                            Delete
+                                        </Button>
                                     </Card.Footer>
                                 </Card>
                             </Col>
