@@ -30,6 +30,11 @@ const NavBar = () => {
         <wa-icon name="user-plus" className="me-1"></wa-icon>
         Create page
       </Nav.Link>
+
+      <Nav.Link as={Link} to="/mypage" className={styles.navItem}>
+        <wa-icon name="user-plus" className="me-1"></wa-icon>
+        My personal page
+      </Nav.Link>
     </>
   );
 

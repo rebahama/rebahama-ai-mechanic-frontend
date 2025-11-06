@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import LogIn from './webpage/auth/LogIn';
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import CreatePage from './webpage/CreatePage';
+import MyPage from './webpage/MyPage';
 
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/showall" element={<ShowAll />} />
           <Route path="/login" element={<LogIn />} />
           <Route path="/create" element={<CreatePage />} />
+          <Route path="/mypage" element={<MyPage />} />
         </Routes>
         <Footer />
       </div>
