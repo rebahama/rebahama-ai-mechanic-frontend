@@ -86,7 +86,7 @@ const NavBar = () => {
             </Nav.Link>
           </Nav>
 
-          <div className="d-flex align-items-center">
+          <div className={`d-flex align-items-center ${styles.MoveInfo}`}>
             {currentUser ? LoggedIn : LoggedOut}
           </div>
         </Navbar.Collapse>

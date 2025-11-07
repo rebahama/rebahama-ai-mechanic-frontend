@@ -97,6 +97,8 @@
     transform: translateY(1px);
 }
 
+
+
 @media (max-width: 768px) {
     .navItem {
         padding: 0.6rem 0.8rem;
@@ -106,4 +108,13 @@
     .brand {
         font-size: 1.3rem;
     }
+
+}
+
+@media (max-width: 1000px) {
+    .MoveInfo {
+        display: flex;
+        flex-direction: column;
+    }
+
 }
