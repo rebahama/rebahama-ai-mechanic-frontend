@@ -4,6 +4,7 @@ import styles from "../styles/ShowAllPage.module.css";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { axiosReq } from "../api/axiosDefault";
 import { ReDirectPageNotUser } from "../utilis/helperFuncs";
+import { Link } from "react-router-dom";
 
 const MyPage = () => {
     const { currentUser } = useContext(CurrentUserContext);
@@ -63,6 +64,7 @@ const MyPage = () => {
                 ) : error ? (
                     <Alert variant="danger" className="text-center">{error}</Alert>
                 ) : results.length > 0 ? (
+                    
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {results.map((item) => (
                             <Col key={item.id}>
@@ -94,6 +96,17 @@ const MyPage = () => {
                                         >
                                             Delete
                                         </Button>
+
+                                        <Link to={`/detail/${item.id}`}>
+                                            <Button
+                                                variant="primary"
+                                                style={{ fontWeight: 600 }}
+                                                className="px-3 py-1"
+                                            >
+                                                View More
+                                            </Button>
+                                        </Link>
+                                        {`owner: ${item.is_owner}`}
                                     </Card.Footer>
                                 </Card>
                             </Col>
