@@ -87,7 +87,7 @@ const ShowAll = () => {
                   </Card.Body>
                   <Card.Footer className="d-flex justify-content-between align-items-center">
                     <div>
-                      Prompt Created by user: {item.owner || "Unknown"}
+                      Created by user: {item.owner || "Unknown"}
                       <hr />
                       {item.created_at || "Unknown date"}
                     </div>

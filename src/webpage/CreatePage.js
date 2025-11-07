@@ -41,7 +41,8 @@ function CreatePage() {
     setLoading(true);
 
     try {
-      await axiosReq.post("/diagnose/", formData, { requiresAuth: true });
+      const { data } = await axiosReq.post("/diagnose/", formData, { requiresAuth: true });
+      navigate(`/detail/${data.id}`);
       setSuccess("Diagnosis request created successfully!");
       setFormData({
         car_make: "",
