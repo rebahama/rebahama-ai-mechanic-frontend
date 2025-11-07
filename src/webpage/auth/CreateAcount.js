@@ -42,6 +42,7 @@ const CreateAccount = () => {
             <Container>
                 <Row className="justify-content-center">
                     <Col md={6}>
+                    <div class={styles.CreateAccountBackground}>
                         <h2 className={styles.FormTitle}>
                             <wa-icon name="user-plus" class="me-2"></wa-icon>
                             Create Account
@@ -96,6 +97,7 @@ const CreateAccount = () => {
 
                             {message && <Alert variant="success" className="mt-3">{message}</Alert>}
                         </Form>
+                        </div>
                     </Col>
                 </Row>
             </Container>

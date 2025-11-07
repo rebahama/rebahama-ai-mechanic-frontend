@@ -44,7 +44,7 @@ const ShowAll = () => {
         <Form onSubmit={(event) => event.preventDefault()}>
           <Form.Control
             type="text"
-            placeholder="Search ad"
+            placeholder="Search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />

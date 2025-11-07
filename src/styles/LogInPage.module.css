@@ -5,6 +5,8 @@
     align-items: center;
     background: radial-gradient(circle at top left, #1565c0, #0d47a1);
     padding: 2rem;
+    color: #ffd700;
+    font-family: 'Poppins', sans-serif;
 }
 
 .InputLogIn {
