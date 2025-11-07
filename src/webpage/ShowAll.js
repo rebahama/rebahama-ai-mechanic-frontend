@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefault";
-import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
+import { Container, Row, Col, Card, Spinner, Button, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../styles/ShowAllPage.module.css";
 import Robot from "../assets/ManRobot.gif"
@@ -8,11 +8,12 @@ import Robot from "../assets/ManRobot.gif"
 const ShowAll = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [query, setQuery] = useState("")
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get("/result/");
+        const { data } = await axiosReq.get(`/result/?search=${query}`);
         setResults(data.results || []);
       } catch (err) {
         console.error("Error fetching results:", err);
@@ -23,7 +24,7 @@ const ShowAll = () => {
     };
 
     handleMount();
-  }, []);
+  }, [query]);
 
   return (
     <div className={styles.background}>
@@ -39,6 +40,15 @@ const ShowAll = () => {
         <p className={styles.heroText}>
           Soon you will be able to <span>search by car make, model, and year</span> to find cases similar to yours.
         </p>
+
+        <Form onSubmit={(event) => event.preventDefault()}>
+          <Form.Control
+            type="text"
+            placeholder="Search ad"
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+          />
+        </Form>
 
         <div className={styles.robotWrapper}>
           <img
