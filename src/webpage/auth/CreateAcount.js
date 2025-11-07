@@ -1,9 +1,12 @@
 import styles from "../../styles/CreateAccountPage.module.css"
-import React, { useState } from "react";
+import { useState} from "react";
 import { axiosReq } from "../../api/axiosDefault";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
+import { ReDirectPage } from "../../utilis/helperFuncs";
 
 const CreateAccount = () => {
+    ReDirectPage();
+
     const [message, setMessage] = useState("")
     const [signUp, setSignup] = useState({
         username: "",

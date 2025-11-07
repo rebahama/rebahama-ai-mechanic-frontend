@@ -1,14 +1,17 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Container, Row, Col, Card, Spinner, Alert, Button } from "react-bootstrap";
 import styles from "../styles/ShowAllPage.module.css";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { axiosReq } from "../api/axiosDefault";
+import { ReDirectPageNotUser } from "../utilis/helperFuncs";
 
 const MyPage = () => {
     const { currentUser } = useContext(CurrentUserContext);
     const [results, setResults] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
+
+    ReDirectPageNotUser()
 
     useEffect(() => {
         const fetchUserResults = async () => {

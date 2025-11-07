@@ -1,9 +1,12 @@
-import React from "react";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import styles from "../styles/LearnPage.module.css";
 import learnGif from "../assets/Learn.gif";
+import { ReDirectPage } from "../utilis/helperFuncs";
+
 
 const LearnPage = () => {
+  ReDirectPage()
+
   return (
     <div className={styles.learnWrapper}>
       <Container className="py-5">
@@ -11,7 +14,7 @@ const LearnPage = () => {
           <Col md={8}>
             <h1 className={styles.title}>Welcome to Mechanic AI</h1>
             <p className={styles.subtitle}>
-              Mechanic AI is your intelligent assistant for diagnosing car problems and finding repair solutions quickly. 
+              Mechanic AI is your intelligent assistant for diagnosing car problems and finding repair solutions quickly.
               Simply describe the issue with your vehicle, and our AI will provide a detailed answer along with helpful tips.
             </p>
             <img src={learnGif} alt="AI learning mechanic" className={styles.heroGif} />
