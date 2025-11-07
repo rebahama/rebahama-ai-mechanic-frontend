@@ -12,7 +12,7 @@ const MyPage = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
-    ReDirectPageNotUser()
+    ReDirectPageNotUser();
 
     useEffect(() => {
         const fetchUserResults = async () => {
@@ -64,7 +64,7 @@ const MyPage = () => {
                 ) : error ? (
                     <Alert variant="danger" className="text-center">{error}</Alert>
                 ) : results.length > 0 ? (
-                    
+
                     <Row xs={1} md={2} lg={3} className="g-4">
                         {results.map((item) => (
                             <Col key={item.id}>
@@ -84,29 +84,45 @@ const MyPage = () => {
                                             }}
                                         />
                                     </Card.Body>
-                                    <Card.Footer className="d-flex justify-content-between align-items-center">
-                                        <div>
-                                            Prompt Created by you
-                                            <hr />
-                                            {item.created_at || "Unknown date"}
-                                        </div>
-                                        <Button
-                                            onClick={() => handleDelete(item.id)}
-                                            className={`${styles.deleteBtn} ms-2`}
-                                        >
-                                            Delete
-                                        </Button>
 
-                                        <Link to={`/detail/${item.id}`}>
-                                            <Button
-                                                variant="primary"
-                                                style={{ fontWeight: 600 }}
-                                                className="px-3 py-1"
-                                            >
-                                                View More
-                                            </Button>
-                                        </Link>
-                                        {`owner: ${item.is_owner}`}
+                                    <Card.Footer className="d-flex justify-content-between align-items-center">
+                                        {item.is_owner ? (
+                                            <>
+                                                <Button
+                                                    onClick={() => handleDelete(item.id)}
+                                                    className={`${styles.deleteBtn} px-3`}
+                                                >
+                                                    Delete
+                                                </Button>
+
+                                                <Link to={`/detail/${item.id}`}>
+                                                    <Button
+                                                        variant="primary"
+                                                        style={{ fontWeight: 600 }}
+                                                        className="px-3"
+                                                    >
+                                                        View More
+                                                    </Button>
+                                                </Link>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Alert variant="warning" className="p-1 m-0 text-center">
+                                                    You do not own this prompt
+                                                </Alert>
+
+                                                <Link to="/login">
+                                                    <Button
+                                                        variant="outline-light"
+                                                        className="px-3"
+                                                        style={{ fontWeight: 600 }}
+                                                    >
+                                                        Log in to access
+                                                    </Button>
+                                                </Link>
+                                            </>
+                                        )}
+
                                     </Card.Footer>
                                 </Card>
                             </Col>
