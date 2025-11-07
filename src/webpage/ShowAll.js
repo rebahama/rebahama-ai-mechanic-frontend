@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefault";
-import { Container, Row, Col, Card, Spinner, Button, Form } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Spinner, Form } from "react-bootstrap";
 import styles from "../styles/ShowAllPage.module.css";
-import Robot from "../assets/ManRobot.gif"
+import Robot from "../assets/ManRobot.gif";
+import ShowAllProp from "./ShowAllProp";
 
 const ShowAll = () => {
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const handleMount = async () => {
@@ -28,7 +28,6 @@ const ShowAll = () => {
 
   return (
     <div className={styles.background}>
-
       <div className={styles.heroSection}>
         <h1 className={styles.heroTitle}>
           Explore <span>Real Repair Solutions</span>
@@ -51,16 +50,11 @@ const ShowAll = () => {
         </Form>
 
         <div className={styles.robotWrapper}>
-          <img
-            src={Robot}
-            alt="AI assistant robot talking to user"
-            className={styles.robotImage}
-          />
+          <img src={Robot} alt="AI assistant robot talking to user" className={styles.robotImage} />
         </div>
       </div>
 
       <Container className="py-5">
-
         {loading ? (
           <div className="text-center py-5">
             <Spinner animation="border" role="status" />
@@ -69,39 +63,14 @@ const ShowAll = () => {
           <Row xs={1} md={2} lg={3} className="g-4">
             {results.map((item) => (
               <Col key={item.id}>
-                <Card className={`${styles.card} shadow-lg`}>
-                  <Card.Body>
-                    <Card.Title className={styles.cardTitle}>
-                      {item.request_info || "No Request Info"}
-                    </Card.Title>
-                    <Card.Subtitle className={styles.prompt}>
-                      {item.original_prompt || "No Prompt"}
-                    </Card.Subtitle>
-                    <hr />
-                    <div
-                      className={styles.cardText}
-                      dangerouslySetInnerHTML={{
-                        __html: (item.result || "").replace(/\n/g, "<br/>"),
-                      }}
-                    />
-                  </Card.Body>
-                  <Card.Footer className="d-flex justify-content-between align-items-center">
-                    <div>
-                      Created by user: {item.owner || "Unknown"}
-                      <hr />
-                      {item.created_at || "Unknown date"}
-                    </div>
-                    <Link to={`/detail/${item.id}`}>
-                      <Button
-                        variant="primary"
-                        style={{ fontWeight: 600 }}
-                        className="px-3 py-1"
-                      >
-                        View More
-                      </Button>
-                    </Link>
-                  </Card.Footer>
-                </Card>
+                <ShowAllProp
+                  id={item.id}
+                  request_info={item.request_info}
+                  original_prompt={item.original_prompt}
+                  result={item.result}
+                  owner={item.owner}
+                  created_at={item.created_at}
+                />
               </Col>
             ))}
           </Row>
