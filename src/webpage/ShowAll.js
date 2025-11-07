@@ -3,6 +3,7 @@ import { axiosReq } from "../api/axiosDefault";
 import { Container, Row, Col, Card, Spinner, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "../styles/ShowAllPage.module.css";
+import Robot from "../assets/ManRobot.gif"
 
 const ShowAll = () => {
   const [results, setResults] = useState([]);
@@ -26,8 +27,29 @@ const ShowAll = () => {
 
   return (
     <div className={styles.background}>
+
+      <div className={styles.heroSection}>
+        <h1 className={styles.heroTitle}>
+          Explore <span>Real Repair Solutions</span>
+        </h1>
+        <p className={styles.heroText}>
+          View real diagnostic results solved by our AI assistant and community members.
+          Learn how others identified issues, understood symptoms, and repaired their vehicles.
+        </p>
+        <p className={styles.heroText}>
+          Soon you will be able to <span>search by car make, model, and year</span> to find cases similar to yours.
+        </p>
+
+        <div className={styles.robotWrapper}>
+          <img
+            src={Robot}
+            alt="AI assistant robot talking to user"
+            className={styles.robotImage}
+          />
+        </div>
+      </div>
+
       <Container className="py-5">
-        <h2 className={`text-center mb-5 ${styles.title}`}>AI Repair Results</h2>
 
         {loading ? (
           <div className="text-center py-5">
