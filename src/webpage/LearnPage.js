@@ -1,3 +1,4 @@
+
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import styles from "../styles/LearnPage.module.css";
 import learnGif from "../assets/Learn.gif";
@@ -6,7 +7,6 @@ import { ReDirectPage } from "../utilis/helperFuncs";
 
 const LearnPage = () => {
   ReDirectPage()
-
   return (
     <div className={styles.learnWrapper}>
       <Container className="py-5">

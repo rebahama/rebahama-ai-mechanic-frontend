@@ -3,11 +3,14 @@ import { Form, Button, Container, Row, Col, Alert, Card, Spinner } from "react-b
 import { useNavigate } from "react-router-dom";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { axiosReq } from "../api/axiosDefault";
+import Robot from '../assets/askrobot.gif';
 import styles from "../styles/CreatePage.module.css";
 
 function CreatePage() {
   const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
+
+  const MAX_CHAR = 600;
 
   const [formData, setFormData] = useState({
     car_make: "",
@@ -15,6 +18,7 @@ function CreatePage() {
     car_year: "",
     problem_description: "",
   });
+
   const [error, setError] = useState({});
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
@@ -26,6 +30,7 @@ function CreatePage() {
   }, [currentUser, navigate]);
 
   const handleChange = (e) => {
+    if (e.target.name === "problem_description" && e.target.value.length > MAX_CHAR) return;
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -54,11 +59,26 @@ function CreatePage() {
   return (
     <div className={styles.pageWrapper}>
       <Container>
+
+        <div className={styles.heroSection}>
+          <img src={Robot} alt="Ask Robot" className={styles.robotImg} />
+
+          <h2 className={styles.heroTitle}>
+            <span>AskRobot</span> Smart Car Diagnosis
+          </h2>
+
+          <p className={styles.heroText}>
+            Describe your car problem and let AI analyze symptoms, patterns, and real repair history.
+            You'll get clear guidance, common causes, and recommended next steps.
+          </p>
+        </div>
+
         <Row className="justify-content-center">
           <Col md={7} lg={6}>
             <Card className={`p-4 ${styles.cardCustom}`}>
               <h3>Create Diagnosis Request</h3>
               <Form onSubmit={handleSubmit}>
+
                 <Form.Group className="mb-3">
                   <Form.Label>Car Make</Form.Label>
                   <Form.Control
@@ -93,7 +113,7 @@ function CreatePage() {
                   />
                 </Form.Group>
 
-                <Form.Group className="mb-3">
+                <Form.Group className="mb-2">
                   <Form.Label>Problem Description</Form.Label>
                   <Form.Control
                     as="textarea"
@@ -103,7 +123,11 @@ function CreatePage() {
                     onChange={handleChange}
                     placeholder="Describe the issue..."
                     className={styles.textarea}
+                    maxLength={MAX_CHAR}
                   />
+                  <small className="text-muted">
+                    {formData.problem_description.length}/{MAX_CHAR} characters
+                  </small>
                 </Form.Group>
 
                 {error.non_field_errors?.map((msg, idx) => (
@@ -124,17 +148,19 @@ function CreatePage() {
                           aria-hidden="true"
                           className="me-2"
                         />
-                        Please wait, the smart mechanic is thinking...
+                        Please wait, the smart mechanic is analyzing...
                       </>
                     ) : (
                       "Submit Request"
                     )}
                   </Button>
                 </div>
+
               </Form>
             </Card>
           </Col>
         </Row>
+
       </Container>
     </div>
   );

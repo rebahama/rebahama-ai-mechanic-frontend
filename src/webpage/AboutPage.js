@@ -7,6 +7,7 @@ import Robot from '../assets/Robot.gif';
 import { Link } from 'react-router-dom';
 
 const AboutPage = () => {
+  
   return (
     <div className={styles.aboutSection}>
       <Container>

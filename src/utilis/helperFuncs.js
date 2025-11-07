@@ -23,7 +23,7 @@ export const ReDirectPageNotUser = () => {
 
     useEffect(() => {
         if (!currentUser) {
-            navigate("/create");
+            navigate("/learn");
         }
     }, [currentUser, navigate]);
 
