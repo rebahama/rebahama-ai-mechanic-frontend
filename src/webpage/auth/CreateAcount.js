@@ -56,7 +56,7 @@ const CreateAccount = () => {
             <Container>
                 <Row className="justify-content-center">
                     <Col md={6}>
-                        <div class={styles.CreateAccountBackground}>
+                        <div className={styles.CreateAccountBackground}>
                             <h2 className={styles.FormTitle}>
                                 <wa-icon name="user-plus" class="me-2"></wa-icon>
                                 Create Account
