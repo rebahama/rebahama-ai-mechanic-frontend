@@ -10,18 +10,16 @@ const Footer = () => {
     <footer className={styles.footer}>
       <Container>
         <Row className="text-center text-md-start align-items-center">
-          {/* Brand / About */}
           <Col md={4} className="mb-3 mb-md-0">
             <h5 className={styles.brand}>
               <wa-icon name="tools" class="me-2"></wa-icon>
-              Mechanic AI
+              Smart Mechanic
             </h5>
             <p className={styles.desc}>
               Empowering car owners with AI-driven diagnostics and repair insights.
             </p>
           </Col>
 
-          {/* Quick Links */}
           <Col md={4} className="mb-3 mb-md-0">
             <h6 className={styles.linkTitle}>Quick Links</h6>
             <ul className={styles.linkList}>
@@ -48,7 +46,6 @@ const Footer = () => {
             </ul>
           </Col>
 
-          {/* Social Icons (no invalid hrefs) */}
           <Col md={4} className="text-md-end">
             <h6 className={styles.linkTitle}>Connect With Us</h6>
             <div className={styles.socialIcons}>
