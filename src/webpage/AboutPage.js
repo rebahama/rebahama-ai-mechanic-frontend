@@ -24,17 +24,17 @@ const AboutPage = () => {
 
           <Col md={6}>
             <h1 className={styles.title}>
-              <wa-icon name="robot" class="me-2"></wa-icon> About Mechanic AI
+              <wa-icon name="robot" class="me-2"></wa-icon> About Smart Mechanic
             </h1>
             <p className={styles.text}>
-              Mechanic AI is your intelligent car repair companion. Using
+              Smart Mechanic is your intelligent car repair companion. Using
               advanced <strong>AI-driven diagnostics</strong>, it helps you
               understand complex automotive problems and offers easy-to-follow
               repair guides tailored to your specific car model.
             </p>
             <p className={styles.text}>
               Whether you’re a <strong>DIY enthusiast</strong> or just want to
-              save time and money, Mechanic AI provides expert-level guidance
+              save time and money,Smart Mechanic provides expert-level guidance
               directly from your browser — no mechanic visit needed.
             </p>
 

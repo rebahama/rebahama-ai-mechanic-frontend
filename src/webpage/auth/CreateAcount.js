@@ -1,11 +1,13 @@
 import styles from "../../styles/CreateAccountPage.module.css"
-import { useState} from "react";
+import { useState } from "react";
 import { axiosReq } from "../../api/axiosDefault";
 import { Alert, Button, Container, Form, Col, Row } from "react-bootstrap";
 import { ReDirectPage } from "../../utilis/helperFuncs";
+import { Link} from "react-router-dom";
 
 const CreateAccount = () => {
     ReDirectPage();
+
 
     const [message, setMessage] = useState("")
     const [signUp, setSignup] = useState({
@@ -28,7 +30,17 @@ const CreateAccount = () => {
 
         try {
             await axiosReq.post("/dj-rest-auth/registration/", signUp);
-            setMessage("Account created successfully!");
+            setMessage(
+                <div>
+                    Account created successfully, Click on link to login!
+                    <Link to="/login" className={styles.navItem}>
+                        <wa-icon name="sign-in" className="me-1"></wa-icon>
+                        Sign In
+                    </Link>
+                </div>
+            );
+
+
             setError({});
         } catch (err) {
             console.log(err);
@@ -37,66 +49,68 @@ const CreateAccount = () => {
         }
     };
 
+
+
     return (
         <div className={styles.CenterForm}>
             <Container>
                 <Row className="justify-content-center">
                     <Col md={6}>
-                    <div class={styles.CreateAccountBackground}>
-                        <h2 className={styles.FormTitle}>
-                            <wa-icon name="user-plus" class="me-2"></wa-icon>
-                            Create Account
-                        </h2>
-                        <Form onSubmit={submitForm}>
-                            <Form.Group className="mb-3" controlId="username">
-                                <Form.Label className={styles.FormLabel}>Username</Form.Label>
-                                <Form.Control
-                                    type="text"
-                                    placeholder="Username"
-                                    value={username}
-                                    name="username"
-                                    className={styles.InputLogIn}
-                                    onChange={handleChange}
-                                />
-                                {error.username?.map((msg, idx) => (
-                                    <Alert key={idx} className={styles.Alert}>{msg}</Alert>
-                                ))}
-                            </Form.Group>
+                        <div class={styles.CreateAccountBackground}>
+                            <h2 className={styles.FormTitle}>
+                                <wa-icon name="user-plus" class="me-2"></wa-icon>
+                                Create Account
+                            </h2>
+                            <Form onSubmit={submitForm}>
+                                <Form.Group className="mb-3" controlId="username">
+                                    <Form.Label className={styles.FormLabel}>Username</Form.Label>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Username"
+                                        value={username}
+                                        name="username"
+                                        className={styles.InputLogIn}
+                                        onChange={handleChange}
+                                    />
+                                    {error.username?.map((msg, idx) => (
+                                        <Alert key={idx} className={styles.Alert}>{msg}</Alert>
+                                    ))}
+                                </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="password1">
-                                <Form.Label className={styles.FormLabel}>Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    placeholder="Password"
-                                    value={password1}
-                                    name="password1"
-                                    className={styles.InputLogIn}
-                                    onChange={handleChange}
-                                />
-                                {error.password1?.map((msg, idx) => (
-                                    <Alert key={idx} className={styles.Alert}>{msg}</Alert>
-                                ))}
-                            </Form.Group>
+                                <Form.Group className="mb-3" controlId="password1">
+                                    <Form.Label className={styles.FormLabel}>Password</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Password"
+                                        value={password1}
+                                        name="password1"
+                                        className={styles.InputLogIn}
+                                        onChange={handleChange}
+                                    />
+                                    {error.password1?.map((msg, idx) => (
+                                        <Alert key={idx} className={styles.Alert}>{msg}</Alert>
+                                    ))}
+                                </Form.Group>
 
-                            <Form.Group className="mb-3" controlId="password2">
-                                <Form.Label className={styles.FormLabel}>Confirm Password</Form.Label>
-                                <Form.Control
-                                    type="password"
-                                    placeholder="Confirm Password"
-                                    value={password2}
-                                    name="password2"
-                                    className={styles.InputLogIn}
-                                    onChange={handleChange}
-                                />
-                                {error.password2?.map((msg, idx) => (
-                                    <Alert key={idx} className={styles.Alert}>{msg}</Alert>
-                                ))}
-                            </Form.Group>
+                                <Form.Group className="mb-3" controlId="password2">
+                                    <Form.Label className={styles.FormLabel}>Confirm Password</Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Confirm Password"
+                                        value={password2}
+                                        name="password2"
+                                        className={styles.InputLogIn}
+                                        onChange={handleChange}
+                                    />
+                                    {error.password2?.map((msg, idx) => (
+                                        <Alert key={idx} className={styles.Alert}>{msg}</Alert>
+                                    ))}
+                                </Form.Group>
 
-                            <Button type="submit" className={styles.LoginBtn}>Create Account</Button>
+                                <Button type="submit" className={styles.LoginBtn}>Create Account</Button>
 
-                            {message && <Alert variant="success" className="mt-3">{message}</Alert>}
-                        </Form>
+                                {message && <Alert variant="success" className="mt-3">{message}</Alert>}
+                            </Form>
                         </div>
                     </Col>
                 </Row>

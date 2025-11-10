@@ -12,9 +12,9 @@ const LearnPage = () => {
       <Container className="py-5">
         <Row className="justify-content-center text-center mb-5">
           <Col md={8}>
-            <h1 className={styles.title}>Welcome to Mechanic AI</h1>
+            <h1 className={styles.title}>Welcome to Smart Mechanic </h1>
             <p className={styles.subtitle}>
-              Mechanic AI is your intelligent assistant for diagnosing car problems and finding repair solutions quickly.
+              Smart Mechanic is your intelligent assistant for diagnosing car problems and finding repair solutions quickly.
               Simply describe the issue with your vehicle, and our AI will provide a detailed answer along with helpful tips.
             </p>
             <img src={learnGif} alt="AI learning mechanic" className={styles.heroGif} />

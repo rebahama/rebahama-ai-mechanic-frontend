@@ -33,7 +33,7 @@ const HomePage = () => {
       <Container className="text-center py-5">
         <div className={styles.heroSection}>
           <h1 className={styles.title}>
-            Welcome to <span>Mechanic AI</span>
+            Welcome to <span>Smart Mechanic </span>
           </h1>
           <p className={styles.subtitle}>
             Your intelligent assistant for diagnosing and repairing your car — fast, reliable, and AI-powered.

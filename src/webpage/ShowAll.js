@@ -37,7 +37,7 @@ const ShowAll = () => {
           Learn how others identified issues, understood symptoms, and repaired their vehicles.
         </p>
         <p className={styles.heroText}>
-          Soon you will be able to <span>search by car make, model, and year</span> to find cases similar to yours.
+          <span>Search by car make, model, and year</span> to find cases similar to yours.
         </p>
 
         <Form onSubmit={(event) => event.preventDefault()}>

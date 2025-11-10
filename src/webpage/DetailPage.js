@@ -62,7 +62,7 @@ const DetailPage = () => {
             />
           </Card.Body>
           <Card.Footer className={styles.footer}>
-            Prompt Created by: {result.owner || "Unknown"}
+            Created by: {result.owner || "Unknown"}
             <hr />
             {result.created_at || "Unknown date"}
           </Card.Footer>
