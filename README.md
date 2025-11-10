@@ -166,3 +166,8 @@ The documentation for the backend can be found her: [repository](https://github.
 2. Click on the green button texted "Code"
 
 3. Type npm start to get the server up and running.
+
+## Credits
+* The symbols on the webpage can be found on [Fontawesome](https://webawesome.com/).
+
+* The animation from in the webpage was taken from [Lottiefiles](https://lottiefiles.com/). 
