@@ -7,13 +7,16 @@ import ShowAllProp from "./ShowAllProp";
 
 const ShowAll = () => {
   const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [query, setQuery] = useState("");
 
   useEffect(() => {
-    const handleMount = async () => {
+    const delayDebounce = setTimeout(async () => {
+      setLoading(true);
+
       try {
-        const { data } = await axiosReq.get(`/result/?search=${query}`);
+        const searchParam = query.trim() ? `?search=${query}` : "";
+        const { data } = await axiosReq.get(`/result/${searchParam}`);
         setResults(data.results || []);
       } catch (err) {
         console.error("Error fetching results:", err);
@@ -21,9 +24,9 @@ const ShowAll = () => {
       } finally {
         setLoading(false);
       }
-    };
+    }, 400);
 
-    handleMount();
+    return () => clearTimeout(delayDebounce);
   }, [query]);
 
   return (
@@ -33,19 +36,23 @@ const ShowAll = () => {
           Explore <span>Real Repair Solutions</span>
         </h1>
         <p className={styles.heroText}>
-          View real diagnostic results solved by our AI assistant and community members.
-          Learn how others identified issues, understood symptoms, and repaired their vehicles.
+          View real diagnostic results solved by our AI assistant and community.
         </p>
         <p className={styles.heroText}>
-          <span>Search by car make, model, and year</span> to find cases similar to yours.
+          <span>Search by car make, model, and year</span> to find similar cases.
         </p>
 
-        <Form onSubmit={(event) => event.preventDefault()}>
+        <Form onSubmit={(e) => e.preventDefault()}>
           <Form.Control
             type="text"
             placeholder="Search"
             value={query}
-            onChange={(event) => setQuery(event.target.value)}
+            onChange={(e) => {
+              const value = e.target.value;
+              if (/^[a-zA-Z0-9\s-]*$/.test(value)) {
+                setQuery(value);
+              }
+            }}
           />
         </Form>
 

@@ -10,7 +10,7 @@ function CreatePage() {
   const { currentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
 
-  const MAX_CHAR = 600;
+  const MAX_CHAR = 200;
 
   const [formData, setFormData] = useState({
     car_make: "",

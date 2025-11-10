@@ -22,7 +22,7 @@ const LogIn = () => {
     setLoading(true);
 
     try {
-       const { data } = await axios.post(
+      const { data } = await axios.post(
         "https://mechanic-ai-backend-30fbbccc99ba.herokuapp.com/api/token/",
         signIn
       );
