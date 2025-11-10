@@ -68,7 +68,7 @@ const Footer = () => {
               </button>
             </div>
             <p className={styles.copy}>
-              © {new Date().getFullYear()} Mechanic AI. All rights reserved.
+              © {new Date().getFullYear()} Smart Mechanic created by Rebaz. All rights reserved.
             </p>
           </Col>
         </Row>

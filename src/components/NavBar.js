@@ -9,21 +9,23 @@ const NavBar = () => {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const navigate = useNavigate();
   const [logout, setLogout] = useState("");
+  const [expanded, setExpanded] = useState(false);
 
-  
+
 
   const handleLogOut = () => {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     axios.defaults.headers.common["Authorization"] = null;
     setCurrentUser(null);
+    setExpanded(false);
     navigate("/");
     setLogout("You have logged out");
     setTimeout(() => setLogout(""), 3000);
   };
 
-  
 
+  const closeMenu = () => setExpanded(false);
   const LoggedIn = (
     <>
       <Nav.Link as={Link} to="/create" className={styles.navItem}>
@@ -60,27 +62,34 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar expand="lg" className={`${styles.NavBar} shadow-sm`} fixed="top">
+    <Navbar
+      expand="lg"
+      expanded={expanded}
+      onToggle={() => setExpanded(!expanded)}
+      className={`${styles.NavBar} shadow-sm`}
+      fixed="top"
+    >
       <Container>
-        <Navbar.Brand as={Link} to="/" className={styles.brand}>
+        <Navbar.Brand as={Link} to="/" onClick={closeMenu} className={styles.brand}>
           <wa-icon name="tools" className="me-2"></wa-icon>
-          Mechanic AI
+         Smart Mechanic
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className={`me-auto align-items-center ${styles.navLinks}`}>
-            <Nav.Link as={Link} to="/" className={styles.navItem}>
+            <Nav.Link as={Link} to="/" onClick={closeMenu} className={styles.navItem}>
               <wa-icon name="house" className="me-1"></wa-icon>
               Home
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/about" className={styles.navItem}>
+            <Nav.Link as={Link} to="/about" onClick={closeMenu} className={styles.navItem}>
               <wa-icon name="info-circle" className="me-1"></wa-icon>
               About
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/showall" className={styles.navItem}>
+            <Nav.Link as={Link} to="/showall" onClick={closeMenu} className={styles.navItem}>
               <wa-icon name="list" className="me-1"></wa-icon>
               Show All
             </Nav.Link>
