@@ -28,12 +28,12 @@ const NavBar = () => {
   const closeMenu = () => setExpanded(false);
   const LoggedIn = (
     <>
-      <Nav.Link as={Link} to="/create" className={styles.navItem}>
+      <Nav.Link as={Link} to="/create" onClick={closeMenu} className={styles.navItem}>
         <wa-icon name="user-plus" className="me-1"></wa-icon>
         Create page
       </Nav.Link>
 
-      <Nav.Link as={Link} to="/mypage" className={styles.navItem}>
+      <Nav.Link as={Link} to="/mypage" onClick={closeMenu} className={styles.navItem}>
         <wa-icon name="user" className="me-1"></wa-icon>
         My personal page
       </Nav.Link>
@@ -49,12 +49,12 @@ const NavBar = () => {
 
   const LoggedOut = (
     <>
-      <Nav.Link as={Link} to="/signup" className={styles.navItem}>
+      <Nav.Link as={Link} to="/signup" onClick={closeMenu} className={styles.navItem}>
         <wa-icon name="user-plus" className="me-1"></wa-icon>
         Sign Up
       </Nav.Link>
       {logout}
-      <Nav.Link as={Link} to="/login" className={styles.navItem}>
+      <Nav.Link as={Link} to="/login" onClick={closeMenu} className={styles.navItem}>
         <wa-icon name="sign-in" className="me-1"></wa-icon>
         Sign In
       </Nav.Link>
@@ -72,7 +72,7 @@ const NavBar = () => {
       <Container>
         <Navbar.Brand as={Link} to="/" onClick={closeMenu} className={styles.brand}>
           <wa-icon name="tools" className="me-2"></wa-icon>
-         Smart Mechanic
+          Smart Mechanic
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
